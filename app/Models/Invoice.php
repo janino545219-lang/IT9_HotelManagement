@@ -14,10 +14,13 @@ class Invoice extends Model
     protected $fillable = [
         'invoice_id',
         'reservation_id',
+        'walkin_id',
         'guest_id',
         'subtotal',
         'tax_amount',
         'discount',
+        'additional_charges',
+        'additional_charges_notes',
         'total_amount',
         'status',
         'issued_at',
@@ -47,5 +50,10 @@ class Invoice extends Model
     public function reservation()
     {
         return $this->belongsTo(Reservation::class, 'reservation_id', 'reservation_id');
+    }
+
+    public function walkin()
+    {
+        return $this->belongsTo(WalkIn::class, 'walkin_id', 'walkin_id');
     }
 }

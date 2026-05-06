@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grand Hotel — Guest Dashboard</title>
+    <title>Grand Hotel — My Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -250,138 +250,50 @@
             color: var(--text-muted);
         }
 
-        .topbar-greeting {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .topbar-greeting span {
-            color: var(--gold);
-            font-weight: 500;
-        }
-
         /* Content area */
         .content {
             padding: 2rem;
             flex: 1;
         }
 
-        /* Welcome banner */
-        .welcome-banner {
-            background: var(--darker);
-            border-radius: 10px;
-            padding: 2rem 2.4rem;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .welcome-banner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.12) 0%, transparent 60%);
-        }
-
-        .welcome-banner::after {
-            content: '"';
-            position: absolute;
-            right: 2rem; top: -0.5rem;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 8rem;
-            color: rgba(201,168,76,0.08);
-            line-height: 1;
-        }
-
-        .welcome-tag {
-            font-size: 9px;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-            position: relative; z-index: 1;
-        }
-
-        .welcome-heading {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: #fff;
-            position: relative; z-index: 1;
-            margin-bottom: 0.4rem;
-        }
-
-        .welcome-sub {
-            font-size: 12px;
-            color: rgba(255,255,255,0.4);
-            position: relative; z-index: 1;
-        }
-
-        /* Stat cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+        /* Page header */
+        .page-header {
             margin-bottom: 2rem;
         }
 
-        .stat-card {
-            background: #fff;
-            border-radius: 8px;
-            padding: 1.4rem 1.6rem;
-            border: 1px solid var(--cream-dark);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(to right, var(--gold), var(--gold-light));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .stat-card:hover::before { opacity: 1; }
-
-        .stat-label {
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 0.6rem;
-        }
-
-        .stat-value {
+        .page-heading {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2rem;
             font-weight: 500;
             color: var(--dark);
-            line-height: 1;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
 
-        .stat-note {
-            font-size: 11px;
+        .page-subtext {
+            font-size: 13px;
             color: var(--text-muted);
         }
 
-        .stat-icon {
-            position: absolute;
-            top: 1.2rem; right: 1.4rem;
-            width: 32px; height: 32px;
-            background: var(--gold-dim);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+        /* Info card */
+        .info-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid var(--cream-dark);
+            margin-bottom: 2rem;
         }
 
-        /* Info section */
-        .section-heading {
+        .info-section {
+            margin-bottom: 2rem;
+        }
+
+        .info-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 500;
             color: var(--dark);
             margin-bottom: 1rem;
@@ -389,24 +301,18 @@
             border-bottom: 1px solid var(--cream-dark);
         }
 
-        .info-card {
-            background: #fff;
-            border-radius: 8px;
-            padding: 1.6rem;
-            border: 1px solid var(--cream-dark);
-            margin-bottom: 1.5rem;
-        }
-
         .info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.7rem 0;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            padding: 1rem 0;
             border-bottom: 1px solid #f5f5f5;
-            font-size: 13px;
+            align-items: center;
         }
 
-        .info-row:last-child { border-bottom: none; }
+        .info-row:last-child {
+            border-bottom: none;
+        }
 
         .info-key {
             font-size: 10px;
@@ -419,11 +325,12 @@
         .info-val {
             color: var(--dark);
             font-weight: 400;
+            font-size: 13px;
         }
 
         .badge {
             display: inline-block;
-            padding: 0.2rem 0.65rem;
+            padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 10px;
             font-weight: 500;
@@ -437,16 +344,103 @@
             border: 1px solid rgba(201,168,76,0.25);
         }
 
-        /* Empty state */
-        .empty-state {
-            text-align: center;
-            padding: 2.5rem;
+        .badge-success {
+            background: rgba(46, 204, 113, 0.12);
+            color: #27ae60;
+            border: 1px solid rgba(46, 204, 113, 0.25);
+        }
+
+        /* Profile section */
+        .profile-avatar-section {
+            display: flex;
+            align-items: flex-end;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .profile-avatar-large {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: #fff;
+            font-weight: 600;
+            border: 3px solid var(--gold);
+        }
+
+        .profile-intro {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .profile-role {
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-member-since {
+            font-size: 12px;
             color: var(--text-muted);
         }
 
-        .empty-state p {
-            font-size: 13px;
-            margin-top: 0.5rem;
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--cream-dark);
+            text-align: center;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gold-dim);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
         }
 
         /* Mobile toggle */
@@ -467,9 +461,11 @@
             .main { margin-left: 0; }
             .mobile-toggle { display: flex; }
             .stats-grid { grid-template-columns: 1fr; }
+            .info-row { grid-template-columns: 1fr; }
             .content { padding: 1.2rem; }
+            .profile-avatar-section { flex-direction: column; align-items: center; text-align: center; }
         }
-        .topbar-profile { background: #1A1A1A; padding: 6px 20px 6px 6px; border-radius: 40px; display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-left: 1rem; }
+            .topbar-profile { background: #1A1A1A; padding: 6px 20px 6px 6px; border-radius: 40px; display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-left: 1rem; }
         .topbar-avatar { width: 36px; height: 36px; background: #2A2A2A; border: 1.5px solid #C9A84C; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; color: #C9A84C; font-size: 14px; font-weight: 600; flex-shrink: 0; }
         .topbar-name { font-size: 13px; font-weight: 500; color: #FFF; line-height: 1.1; }
         .topbar-role { font-size: 10px; color: #C9A84C; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.1; margin-top: 3px; display:block; }
@@ -486,8 +482,6 @@
             <div class="brand-name">Grand Hotel</div>
             <div class="brand-sub">Guest Portal</div>
         </div>
-
-
 
         <nav class="sidebar-nav">
             <div class="nav-section">Main</div>
@@ -519,14 +513,6 @@
             </a>
 
             <div class="nav-section">Account</div>
-
-            <a href="{{ url('/guest/invoices') }}"
-               class="nav-item {{ request()->is('guest/invoices') ? 'active' : '' }}">
-                <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-                Invoices
-            </a>
 
             <a href="{{ url('/guest/profile') }}"
                class="nav-item {{ request()->is('guest/profile') ? 'active' : '' }}">
@@ -562,99 +548,110 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
-                <span class="topbar-title">Guest Dashboard</span>
+                <span class="topbar-title">My Profile</span>
             </div>
-            <div class="topbar-right">
-                <span class="topbar-date">{{ now()->format('F d, Y') }}</span>
-                <div class="topbar-profile">
-                    <div class="topbar-avatar">{{ strtoupper(substr(Auth::user()->guest->first_name ?? 'G', 0, 1)) }}</div>
-                    <div class="topbar-user-info">
-                        <span class="topbar-name">{{ Auth::user()->guest->first_name ?? '' }} {{ Auth::user()->guest->last_name ?? '' }}</span>
-                        <span class="topbar-role">Guest</span>
-                    </div>
-                </div>
-            </div>
+            <span class="topbar-date">{{ now()->format('F d, Y') }}</span>
         </header>
 
         <!-- Content -->
         <div class="content">
 
-            <!-- Welcome Banner -->
-            <div class="welcome-banner">
-                <div class="welcome-tag">Guest Portal</div>
-                <div class="welcome-heading">
-                    Good {{ now()->hour < 12 ? 'morning' : (now()->hour < 18 ? 'afternoon' : 'evening') }},
-                    {{ Auth::user()->guest->first_name ?? 'valued guest' }}.
-                </div>
-                <div class="welcome-sub">Manage your reservations, invoices, and profile — all in one place.</div>
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-heading">My Profile</div>
+                <div class="page-subtext">Manage your profile information and account details</div>
             </div>
 
-            <!-- Stats -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <svg width="14" height="14" fill="none" stroke="#C9A84C" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                    <div class="stat-label">Total Reservations</div>
-                    <div class="stat-value">
-                        {{ Auth::user()->guest ? Auth::user()->guest->reservations()->count() : 0 }}
-                    </div>
-                    <div class="stat-note">All time bookings</div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <svg width="14" height="14" fill="none" stroke="#C9A84C" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <div class="stat-label">Active Stays</div>
-                    <div class="stat-value">
-                        {{ Auth::user()->guest ? Auth::user()->guest->reservations()->where('status', 'checked_in')->count() : 0 }}
-                    </div>
-                    <div class="stat-note">Currently checked in</div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <svg width="14" height="14" fill="none" stroke="#C9A84C" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                    </div>
-                    <div class="stat-label">Pending Invoices</div>
-                    <div class="stat-value">
-                        {{ Auth::user()->guest ? Auth::user()->guest->invoices()->where('status', 'pending')->count() : 0 }}
-                    </div>
-                    <div class="stat-note">Awaiting payment</div>
-                </div>
-            </div>
-
-            <!-- Guest Info -->
-            <div class="section-heading">Your Profile</div>
+            <!-- Profile Section -->
             <div class="info-card">
-                <div class="info-row">
-                    <span class="info-key">Full Name</span>
-                    <span class="info-val">
-                        {{ Auth::user()->guest->first_name ?? '—' }} {{ Auth::user()->guest->last_name ?? '' }}
-                    </span>
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar-large">
+                        {{ strtoupper(substr($guest->first_name ?? 'G', 0, 1)) }}
+                    </div>
+                    <div class="profile-intro">
+                        <div class="profile-name">
+                            {{ $guest->first_name ?? 'Guest' }} {{ $guest->last_name ?? '' }}
+                        </div>
+                        <div class="profile-role"><span class="badge badge-gold">Guest Account</span></div>
+                        <div class="profile-member-since">
+                            Member since {{ $user->created_at->format('F d, Y') }}
+                        </div>
+                    </div>
                 </div>
-                <div class="info-row">
-                    <span class="info-key">Email</span>
-                    <span class="info-val">{{ Auth::user()->email }}</span>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="18" height="18" fill="none" stroke="#C9A84C" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-value">{{ $guest ? $guest->reservations()->count() : 0 }}</div>
+                        <div class="stat-label">Total Reservations</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="18" height="18" fill="none" stroke="#C9A84C" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-value">{{ $guest ? $guest->reservations()->where('status', 'completed')->count() : 0 }}</div>
+                        <div class="stat-label">Completed Stays</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="18" height="18" fill="none" stroke="#C9A84C" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-value">₱<span style="font-size:1.4rem;">0</span></div>
+                        <div class="stat-label">Amount Spent</div>
+                    </div>
                 </div>
-                <div class="info-row">
-                    <span class="info-key">Phone</span>
-                    <span class="info-val">{{ Auth::user()->guest->phone ?? '—' }}</span>
+
+                <!-- Personal Information Section -->
+                <div class="info-section">
+                    <div class="section-title">Personal Information</div>
+                    <div class="info-row">
+                        <span class="info-key">First Name</span>
+                        <span class="info-val">{{ $guest->first_name ?? '—' }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key">Last Name</span>
+                        <span class="info-val">{{ $guest->last_name ?? '—' }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key">Email Address</span>
+                        <span class="info-val">{{ $user->email }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key">Phone Number</span>
+                        <span class="info-val">{{ $guest->phone ?? '—' }}</span>
+                    </div>
                 </div>
-                <div class="info-row">
-                    <span class="info-key">Account Type</span>
-                    <span class="info-val"><span class="badge badge-gold">Guest</span></span>
-                </div>
-                <div class="info-row">
-                    <span class="info-key">Member Since</span>
-                    <span class="info-val">{{ Auth::user()->created_at->format('F d, Y') }}</span>
+
+                <!-- Account Information Section -->
+                <div class="info-section">
+                    <div class="section-title">Account Information</div>
+                    <div class="info-row">
+                        <span class="info-key">Account Type</span>
+                        <span class="info-val"><span class="badge badge-gold">Guest</span></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key">Account Status</span>
+                        <span class="info-val"><span class="badge badge-success">Active</span></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key">Member Since</span>
+                        <span class="info-val">{{ $user->created_at->format('F d, Y') }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key">Last Login</span>
+                        <span class="info-val">{{ $user->updated_at->format('F d, Y \a\t g:i A') }}</span>
+                    </div>
                 </div>
             </div>
 

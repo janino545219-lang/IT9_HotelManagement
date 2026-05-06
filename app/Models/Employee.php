@@ -5,51 +5,48 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Guest extends Model
+class Employee extends Model
 {
-    protected $table = 'guests';
-    protected $primaryKey = 'guest_id';
+    protected $primaryKey = 'employee_id';
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
-        'guest_id',
+        'employee_id',
         'user_id',
         'first_name',
         'last_name',
         'email',
         'phone',
+        'position',
+        'department',
+        'hire_date',
+        'salary',
+        'is_active',
     ];
 
-    /**
-     * Boot method for UUID generation
-     */
+    protected $casts = [
+        'is_active' => 'boolean',
+        'hire_date' => 'date',
+    ];
+
     protected static function boot()
     {
         parent::boot();
-
         static::creating(function ($model) {
-            if (!$model->getKey()) {
-                $model->guest_id = (string) Str::uuid();
+            if (empty($model->employee_id)) {
+                $model->employee_id = (string) Str::uuid();
             }
         });
     }
 
-    /**
-     * Relationships
-     */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
-    public function reservations()
+    public function walkins()
     {
-        return $this->hasMany(Reservation::class, 'guest_id', 'guest_id');
-    }
-
-    public function invoices()
-    {
-        return $this->hasMany(Invoice::class, 'guest_id', 'guest_id');
+        return $this->hasMany(WalkIn::class, 'employee_id', 'employee_id');
     }
 }

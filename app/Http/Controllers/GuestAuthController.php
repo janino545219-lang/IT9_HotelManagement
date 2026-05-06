@@ -75,9 +75,24 @@ class GuestAuthController extends Controller
     }
 
     public function dashboard()
-{
-    return view('guest.dashboard');
-}
+    {
+        return view('guest.dashboard');
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        $guest = Guest::where('user_id', $user->user_id)->first();
+        return view('guest.profile', compact('user', 'guest'));
+    }
+
+    public function invoices()
+    {
+        $user = Auth::user();
+        $guest = Guest::where('user_id', $user->user_id)->first();
+        $invoices = $guest ? $guest->invoices()->latest()->get() : collect();
+        return view('guest.invoices', compact('invoices', 'guest'));
+    }
 
     public function logout(Request $request)
     {
