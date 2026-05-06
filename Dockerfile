@@ -120,10 +120,12 @@ RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framewor
 
 && chmod -R 775 storage bootstrap/cache public/uploads
 
+RUN chmod +x docker-entrypoint.sh
+
 
 
 EXPOSE 10000
 
 
 
-CMD ["apache2-foreground"]
+CMD ["./docker-entrypoint.sh"]
