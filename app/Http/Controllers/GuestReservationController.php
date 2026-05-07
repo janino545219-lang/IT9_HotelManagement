@@ -54,21 +54,14 @@ class GuestReservationController extends Controller
         $tax      = round($subtotal * 0.12, 2);
         $total    = $subtotal + $tax;
 
-        // ✅ FIXED: Query staff table instead of employees
-        $staff = DB::table('staff')->where('is_available', 1)->first();
-
-        if (!$staff) {
-            return back()->withErrors(['error' => 'No staff available to process booking. Please contact the hotel.']);
-        }
-
         $reservationId = (string) Str::uuid();
 
-        // ✅ FIXED: Use staff->staff_id instead of employee->employee_id
+        // Staff will be assigned during check-in
         DB::table('reservations')->insert([
             'reservation_id' => $reservationId,
             'guest_id'       => $guest->guest_id,
             'room_id'        => $request->room_id,
-            'employee_id'    => $staff->staff_id,
+            'employee_id'    => null,
             'check_in_date'  => $request->check_in_date,
             'check_out_date' => $request->check_out_date,
             'num_guests'     => $request->num_guests,

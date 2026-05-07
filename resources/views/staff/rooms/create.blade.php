@@ -47,7 +47,8 @@
                         <option value="single">Single</option>
                         <option value="double">Double</option>
                         <option value="suite">Suite</option>
-                        <option value="deluxe">Deluxe</option>
+                        <option value="deluxe">De   
+                            luxe</option>
                     </select>
                 </div>
                 <div>
